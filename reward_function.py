@@ -18,3 +18,12 @@ def reward_function(params):
   else:
     reward = 1e-3 # likely crashed/ close to off track
   return reward
+
+def reward_function_2(params):
+    reward = 0.001
+    if params["all_wheels_on_track"]:
+        reward += 1
+    if abs(params["steering_angle"]) < 5:
+       reward += 1
+    reward += ( params["speed"] / 8 )
+    return float(reward)
